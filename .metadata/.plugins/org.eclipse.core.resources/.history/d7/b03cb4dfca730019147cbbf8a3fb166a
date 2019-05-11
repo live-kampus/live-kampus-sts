@@ -1,0 +1,5 @@
+package com.capgemini.profileservice.entity;
+
+public class Profile {
+
+}

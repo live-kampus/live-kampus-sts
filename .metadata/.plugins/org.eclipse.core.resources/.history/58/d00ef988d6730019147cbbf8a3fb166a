@@ -1,0 +1,36 @@
+package com.capgemini.profileservice.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.profileservice.entity.Profile;
+import com.capgemini.profileservice.service.ProfileServiceImpl;
+
+@RestController
+public class ProfileController {
+
+	@Autowired
+	private ProfileServiceImpl service;
+	
+	@PostMapping("/profile")
+	public ResponseEntity<Profile> registerNewAccount(@RequestBody Profile profile ){
+		Profile p= service.createProfile(profile);
+		return new ResponseEntity<Profile>(p,HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/event/{userName}")
+	public ResponseEntity<List<Profile>> getAllEvents(@PathVariable String userName) {
+		return new ResponseEntity(service.getProfile(userName), HttpStatus.OK);
+	}
+	
+	
+	
+}

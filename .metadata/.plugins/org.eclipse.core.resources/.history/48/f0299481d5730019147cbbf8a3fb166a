@@ -1,0 +1,46 @@
+package com.capgemini.profileservice.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.profileservice.entity.Profile;
+import com.capgemini.profileservice.service.ProfileService;
+
+@RestController
+public class ProfileController {
+
+	@Autowired
+	private ProfileService service;
+	
+	@PostMapping("/profile")
+	public ResponseEntity<Profile> registerNewAccount(@RequestBody Profile profile ){
+		Profile p= service.createProfile(profile);
+		return new ResponseEntity<Profile>(p,HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/event")
+	public ResponseEntity<List<Profile>> getAllEvents() {
+		return new ResponseEntity(ProfileService.getAllEvents(), HttpStatus.OK);
+	}
+	
+	@RequestMapping("/update{id}")
+	public ResponseEntity<Profile> update(){
+		Profile profile = new Profile();
+		return new ResponseEntity<Profile>(service.createProfile(profile),HttpStatus.OK);
+	}
+	
+	@RequestMapping("/delete{id}")
+	public ResponseEntity<Profile> delete(){
+		Profile profile = new Profile();
+		return new ResponseEntity<Profile>(service.deleteProfile(profile),HttpStatus.OK);
+	}
+	
+}

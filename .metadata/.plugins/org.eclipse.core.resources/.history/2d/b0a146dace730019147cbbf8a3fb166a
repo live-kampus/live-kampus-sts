@@ -1,0 +1,20 @@
+package com.capgemini.profileservice.entity;
+
+import java.util.List;
+
+public class Profile {
+	private int userId;
+	private String userName;
+	private String profile="assets/images/user-avatar2.jpg";
+	private String postProfile="assets/images/user.jpg";
+	private String timelinePost="assets/images/user-post.jpg";
+	private String friend1="assets/images/friend-avatar9.jpg";
+	private String city;
+	private String state;
+	private String caption;
+	private String friends[];
+	
+	
+	
+	
+}

@@ -1,0 +1,25 @@
+package com.capgemini.profileservice.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ProfileServiceImpl {
+
+	@Autowired
+	private ProfileDao dao;
+
+	@Override
+	public UserProfile createProfile(UserProfile profile) {
+		return dao.save(profile);
+	}
+
+	@Override
+	public void updateProfile(UserProfile profile) {
+		dao.save(profile);
+	}
+
+	@Override
+	public UserProfile deleteProfile(UserProfile profile) {
+		return dao.save(profile);
+		
+	}
+}
